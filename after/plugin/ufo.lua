@@ -22,7 +22,6 @@ for _, ls in ipairs(language_servers) do
         -- you can add other fields for setting up lsp server in this table
     })
 end
-print("ufo setup")
 require('ufo').setup()
 --
 
