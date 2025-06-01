@@ -40,35 +40,20 @@ require("lazy").setup({
 
     { 'lewis6991/gitsigns.nvim' },
 
-    { 'rose-pine/neovim', as = 'rose-pine', config = function() vim.cmd("colorscheme rose-pine") end },
-    { 'danilo-augusto/vim-afterglow', as = 'afterglow' },
-    --{ 'catppuccin/nvim', as = 'catppuccin' },
+    --{ 'rose-pine/neovim', as = 'rose-pine', config = function() vim.cmd("colorscheme rose-pine") end },
+    --{ 'danilo-augusto/vim-afterglow', as = 'afterglow' },
+    { 'catppuccin/nvim', as = 'catppuccin', config = function() vim.cmd("colorscheme catppuccin") end },
     { 'preservim/nerdtree' },
 
-    { 
-      'kevinhwang91/nvim-ufo', 
-      dependencies = { 
-        { 'kevinhwang91/promise-async' } 
-      } 
-    },
-
     {
-      'VonHeikemen/lsp-zero.nvim',
-      branch = 'v3.x',
+      'kevinhwang91/nvim-ufo',
       dependencies = {
-        --- Uncomment these if you want to manage LSP servers from neovim
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
-
-        -- LSP Support
-        {'neovim/nvim-lspconfig'},
-        -- Autocompletion
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'L3MON4D3/LuaSnip'},
+        { 'kevinhwang91/promise-async' }
       }
     },
-    { 'nvim-java/nvim-java' }
+
+    { 'nvim-java/nvim-java' },
+    { import = "plugins" }
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
