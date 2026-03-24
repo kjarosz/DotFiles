@@ -53,6 +53,19 @@ require("lazy").setup({
     },
 
     { 'nvim-java/nvim-java' },
+    {
+      "carlos-algms/agentic.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+      opts = {
+        -- Tell the plugin to use the gemini-cli you installed
+        provider = "gemini-acp", 
+      },
+      keys = {
+        { "<leader>at", "<cmd>lua require('agentic').toggle()<cr>", desc = "Togge Agentic" },
+        { "<leader>aa", "<cmd>AgenticChat<cr>", desc = "Open Agentic Gemini Chat" },
+        { "<leader>ap", "<cmd>AgenticPrompt<cr>", desc = "Send selection to Agent" },
+      }
+    },
     { import = "plugins" }
   },
   -- Configure any other settings here. See the documentation for more details.

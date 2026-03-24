@@ -1,4 +1,4 @@
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
 
 local lsp_zero = require('lsp-zero')
 
@@ -22,10 +22,18 @@ lsp_zero.on_attach(function(client, bufnr)
   map("i", "<C-h>", function() vim.lsp.buf.signature_help() end, "Signature [H]elp")
 end)
 
-
 local local_cap = vim.lsp.protocol.make_client_capabilities()
-local util = require 'lspconfig.util'
+local_cap.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 local_cap.offsetEncoding = { "utf-16" }
+
+lsp_zero.extend_lspconfig({
+    capabilities = local_cap,
+})
+
+local util = require 'lspconfig.util'
 
 local root_files = {
 	'.clangd',
@@ -94,9 +102,10 @@ require('mason-lspconfig').setup({
     lsp_zero.default_setup,
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
-      lspConfig = require('lspconfig')
-      lspConfig.lua_ls.setup(lua_opts)
-      lspConfig.clangd.setup(clangd_opts)
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+    clangd = function()
+      require('lspconfig').clangd.setup(clangd_opts)
     end,
   }
 })
